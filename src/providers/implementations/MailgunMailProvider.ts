@@ -2,6 +2,7 @@ import { IMailProvider, IMessage } from "../IMailProvider";
 import nodemailer from "nodemailer";
 import "dotenv/config";
 import mailgunTransport from "nodemailer-mailgun-transport";
+import { resolveContent } from "nodemailer/lib/shared";
 export class MailgunMailProvider implements IMailProvider{
     async sendMail(message: IMessage): Promise<void> {
         const auth = {
@@ -11,18 +12,20 @@ export class MailgunMailProvider implements IMailProvider{
             }
           }
         const nodemailerMailgun = nodemailer.createTransport(mailgunTransport(auth));
-
-        nodemailerMailgun.sendMail({
-            to:{
-                name: message.to.name,
-                address: message.to.email
-            },
-            from:{
-                name: message.from.name,
-                address: message.from.email
-            },
-            subject: message.subject,
-            html: message.body
-        })
+        
+        
+            nodemailerMailgun.sendMail({
+                to:{
+                    name: message.to.name,
+                    address: message.to.email
+                },
+                from:{
+                    name: message.from.name,
+                    address: message.from.email
+                },
+                subject: message.subject,
+                html: message.body
+            }).catch((err) => console.error(err));
+        
     }
 }

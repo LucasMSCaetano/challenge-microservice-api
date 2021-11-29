@@ -1,0 +1,98 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Challenge LiveOn Documentation",
+        "description": "This is an API made for challenge - Messaging in Microservice",
+        "version": "1.0.0",
+        "contact":{
+            "email": "lucas.matheu.caetano@gmail.com"
+        }
+    },
+    "paths":{
+        "/mail":{
+            "post":{
+                "tags":["Send Email"],
+                "summary": "Send Email",
+                "description": "Send email for only recipient/multiples",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "toName":{
+                                        "type":"string"
+                                    },
+                                    "toEmail":{
+                                        "type": "string"
+                                    },
+                                    "fromName":{
+                                        "type": "string"
+                                    },
+                                    "fromEmail":{
+                                        "type":"string"
+                                    },
+                                    "subject":{
+                                        "type":"string"
+                                    },
+                                    "body":{
+                                        "type":"html"
+                                    }
+                                },
+                                "example":{
+                                    "toName": "Bob",
+                                    "toEmail": "bob@yourdomain.com",
+                                    "fromName": "Lucas from LiveOn",
+                                    "fromEmail": "lucas@liveon.com",
+                                    "subject": "Greeting Email",
+                                    "body": "<h1>Hello World!</h1>"
+                                }
+                        }
+                    }
+                  }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Email send"
+                    },
+                    "400":{
+                        "description": "Email not send"
+                    }
+                }
+            }
+        },
+        "/list":{
+            "post":{
+                "tags":["Tracker Email Events"],
+                "summary": "List all emails",
+                "description": "List Emails sent with success and those with error  ",
+                "requestBody":{
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type":"object",
+                                "properties":{
+                                    "domain":{
+                                        "type":"string"
+                                    }
+                                },
+                                "example":{
+                                    "domain": "sandboxxxxxxxxxx.mailgun.org"
+                                }
+                        }
+                    }
+                  }
+                },
+                "responses":{
+                    "201":{
+                        "description": "Emails Tracker successfully"
+                    },
+                    "400":{
+                        "description": "Emails not Tracker"
+                    }
+                }
+            }
+        
+        }
+    }
+}
