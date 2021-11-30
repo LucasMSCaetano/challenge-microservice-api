@@ -12,7 +12,7 @@ export class ListMailController {
             await this.listMailUseCase.execute({
                 domain 
             })
-            return response.status(201).send();
+            return response.status(200).send();
         }catch(err){
             return response.status(400).json({
                 message: err.message || 'Erro Inesperado'
