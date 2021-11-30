@@ -52,7 +52,7 @@
                   }
                 },
                 "responses":{
-                    "201":{
+                    "200":{
                         "description": "Email send"
                     },
                     "400":{
@@ -84,7 +84,7 @@
                   }
                 },
                 "responses":{
-                    "201":{
+                    "200":{
                         "description": "Emails Tracker successfully"
                     },
                     "400":{
